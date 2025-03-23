@@ -1,32 +1,7 @@
-import globals from 'globals';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
+import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  { ignores: ['dist'] },
-  {
-    extends: ['react-app', 'airbnb', 'plugin:react/recommended'],
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
-    plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-    },
-    rules: {
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-      'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
-      'import/extensions': [1, 'never'],
-      'import/no-unresolved': 'warn',
-      'no-unused-vars': 'error',
-      'prefer-const': 'warn',
-    },
-  },
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
 );
