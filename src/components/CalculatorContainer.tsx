@@ -21,16 +21,23 @@ const CalculatorApp = () => {
     setHistory([]);
   };
 
+  const handleSelectHistory = (operation: string) => {
+    setInput(operation.split('=')[1].trim());
+  };
+
   return (
     <div className="flex w-5xl justify-around  p-6">
-      <h1>Calculatrice</h1>
       <Calculator
         input={input}
         setInput={setInput}
         handleClick={handleClick}
         handleCalculate={handleCalculate}
       />
-      <History history={history} handleClearHistory={handleClearHistory} />
+      <History
+        history={history}
+        handleClearHistory={handleClearHistory}
+        handleSelectHistory={handleSelectHistory}
+      />
     </div>
   );
 };

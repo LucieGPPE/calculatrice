@@ -55,6 +55,14 @@ test.describe('Main page', () => {
       'No history yet',
     );
   });
+
+  test('should reuse history operations', async ({ page }) => {
+    const history = page.getByTestId('history-card');
+    const calculator = page.getByTestId('calculator-card');
+    await addAOperation(calculator);
+    await history.getByTestId('history-item-0').click();
+    await expect(page.getByTestId('result')).toHaveValue('3');
+  });
 });
 
 const addAOperation = async (calculator) => {

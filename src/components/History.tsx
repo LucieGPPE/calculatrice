@@ -4,9 +4,11 @@ import { FaTrash } from 'react-icons/fa';
 const History = ({
   history,
   handleClearHistory,
+  handleSelectHistory,
 }: {
   history: string[];
   handleClearHistory: () => void;
+  handleSelectHistory: (operation: string) => void;
 }) => {
   return (
     <div className="w-full max-w-sm" data-testid="history-card">
@@ -26,7 +28,16 @@ const History = ({
             data-testid="history-result"
           >
             {history.length ? (
-              history.map((item, index) => <div key={index}>{item}</div>)
+              history.map((item, index) => (
+                <div
+                  key={index}
+                  className="cursor-pointer hover:bg-violet-700 p-1 rounded"
+                  onClick={() => handleSelectHistory(item)}
+                  data-testid={`history-item-${index}`}
+                >
+                  {item}
+                </div>
+              ))
             ) : (
               <div>No history yet</div>
             )}
