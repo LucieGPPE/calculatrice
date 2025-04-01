@@ -27,6 +27,11 @@ describe('Calculator', () => {
     expect(result).toBe('Invalid expression');
   });
 
+  it('should return invalid expression for an divide by 0', () => {
+    const result = calculate('2/0');
+    expect(result).toBe('Invalid expression');
+  });
+
   it('should store expressions in history', () => {
     clearHistory();
     calculate('1 + 2');

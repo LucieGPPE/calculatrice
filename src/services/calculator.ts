@@ -6,6 +6,10 @@ export function calculate(expression: string): string {
       /\b0+([0-9]+)/g,
       '$1',
     );
+    if (/\/0(?!\d)/.test(sanitizedExpression)) {
+      return 'Invalid expression';
+    }
+
     const result: string = eval(sanitizedExpression);
     history.push(`${sanitizedExpression} = ${result}`);
     return result;
